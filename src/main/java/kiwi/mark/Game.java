@@ -9,6 +9,7 @@ public class Game {
     private Dice dice;
     private boolean roll;
     private Random rand;
+    private String outputString;
 
     public Game() {
         userTotal = 0;
@@ -16,6 +17,7 @@ public class Game {
         dice = new Dice();
         roll = true;
         rand = new Random();
+        outputString = "";
     }
 
     public void simulate() {
@@ -26,6 +28,31 @@ public class Game {
             roll = rand.nextBoolean();
         }
 
+    }
+
+    public void assess() {
+        if (userTotal > 21) {
+            outputString = "You lose! You went over 21.";
+        } else {
+            simulate();
+            if (computerTotal > 21) {
+                outputString =  "Computer total: " + computerTotal + "\nYou win! The computer went over 21.";
+            } else {
+                if (userTotal > computerTotal) {
+                    outputString = "Computer total: " + computerTotal + "\nYou win! You were closer to 21 than the computer.";
+                } else {
+                    if (userTotal < computerTotal) {
+                        outputString = "Computer total: " + computerTotal + "\nYou lose! The computer was closer to 21 than you.";
+                    } else {
+                        outputString = "Computer total: " + computerTotal + "\nIt's a draw!";
+                    }
+                }
+            }
+        }
+    }
+
+    public String getResult() {
+        return outputString;
     }
 
 }

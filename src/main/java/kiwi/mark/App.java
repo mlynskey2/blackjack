@@ -47,13 +47,8 @@ public class App
 
         }
 
-        if (game.userTotal > 21 ) {
-            System.out.println("You lose! You went over 21.");
-        } else {
-            System.out.println("Your total is " + game.userTotal);
-            game.simulate();
-            System.out.println("Computer total is " + game.computerTotal);
-        }
-
+        game.assess();
+        System.out.println(game.getResult());
+        
     }
 }
