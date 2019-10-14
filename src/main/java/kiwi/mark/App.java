@@ -31,21 +31,29 @@ public class App
         System.out.println("Roll: " + dice.die1 + ", " + dice.die2);
         System.out.println("Current total: " + game.userTotal);
 
-        while (game.userTotal < 20) {
+        while (game.userTotal < 20 && !command.equals("hold")) {
 
             System.out.println("Would you like to hold or roll? [Type 'hold' or 'roll']");
             command = scanner.nextLine();
-            System.out.println("Command: " + command);
 
             if (command.equals("roll")) {
                 dice.roll();
                 game.userTotal += dice.die1 + dice.die2;
                 System.out.println("Roll: " + dice.die1 + ", " + dice.die2);
                 System.out.println("Current total: " + game.userTotal);
+            } else if (command.equals("hold")) {
+                break;
             }
 
         }
-        System.out.println("You lose! You went over 21.");
+
+        if (game.userTotal > 21 ) {
+            System.out.println("You lose! You went over 21.");
+        } else {
+            System.out.println("Your total is " + game.userTotal);
+            game.simulate();
+            System.out.println("Computer total is " + game.computerTotal);
+        }
 
     }
 }
