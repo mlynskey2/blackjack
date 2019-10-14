@@ -6,7 +6,8 @@ public class Game {
 
     public int userTotal;
     public int computerTotal;
-    private Dice dice;
+    private Die die1;
+    private Die die2;
     private boolean roll;
     private Random rand;
     private String outputString;
@@ -14,7 +15,8 @@ public class Game {
     public Game() {
         userTotal = 0;
         computerTotal = 0;
-        dice = new Dice();
+        die1 = new Die();
+        die2 = new Die();
         roll = true;
         rand = new Random();
         outputString = "";
@@ -23,8 +25,9 @@ public class Game {
     public void simulate() {
 
         while (computerTotal < 20 && roll == true) {
-            dice.roll();
-            computerTotal += dice.die1 + dice.die2;
+            die1.roll();
+            die2.roll();
+            computerTotal += die1.getNumber() + die2.getNumber();
             roll = rand.nextBoolean();
         }
 

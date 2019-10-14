@@ -15,7 +15,8 @@ public class App
         Scanner scanner = new Scanner(System.in);
         String command = "";
         Game game = new Game();
-        Dice dice = new Dice();
+        Die die1 = new Die();
+        Die die2 = new Die();
 
         System.out.println("-------------------------------------------------------------------------------------------------------------");
         System.out.println("Welcome to Blackjack!");
@@ -26,9 +27,10 @@ public class App
         System.out.print("Press ENTER to play!");
 
         scanner.nextLine();
-        dice.roll();
-        game.userTotal += dice.die1 + dice.die2;
-        System.out.println("Roll: " + dice.die1 + ", " + dice.die2);
+        die1.roll();
+        die2.roll();
+        game.userTotal += die1.getNumber() + die2.getNumber();
+        System.out.println("Roll: " + die1.getNumber() + ", " + die2.getNumber());
         System.out.println("Current total: " + game.userTotal);
 
         while (game.userTotal < 20 && !command.equals("hold")) {
@@ -37,9 +39,10 @@ public class App
             command = scanner.nextLine();
 
             if (command.equals("roll")) {
-                dice.roll();
-                game.userTotal += dice.die1 + dice.die2;
-                System.out.println("Roll: " + dice.die1 + ", " + dice.die2);
+                die1.roll();
+                die2.roll();
+                game.userTotal += die1.getNumber() + die2.getNumber();
+                System.out.println("Roll: " + die1.getNumber() + ", " + die2.getNumber());
                 System.out.println("Current total: " + game.userTotal);
             } else if (command.equals("hold")) {
                 break;
@@ -49,6 +52,6 @@ public class App
 
         game.assess();
         System.out.println(game.getResult());
-        
+
     }
 }
