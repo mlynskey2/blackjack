@@ -31,7 +31,7 @@ public class App
         System.out.println("Roll: " + dice.die1 + ", " + dice.die2);
         System.out.println("Current total: " + game.userTotal);
 
-        if (game.userTotal < 20) {
+        while (game.userTotal < 20) {
 
             System.out.println("Would you like to hold or roll? [Type 'hold' or 'roll']");
             command = scanner.nextLine();
