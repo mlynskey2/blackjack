@@ -13,6 +13,7 @@ public class App
     public static void main( String[] args ) {
 
         Scanner scanner = new Scanner(System.in);
+        String command = "";
         Game game = new Game();
         Dice dice = new Dice();
 
@@ -29,6 +30,12 @@ public class App
         game.userTotal += dice.die1 + dice.die2;
         System.out.println("Roll: " + dice.die1 + ", " + dice.die2);
         System.out.println("Total: " + game.userTotal);
+
+        if (game.userTotal < 20) {
+            System.out.println("Would you like to hold or roll? [Type 'hold' or 'roll']");
+            command = scanner.nextLine();
+            System.out.println("Command: " + command);
+        }
 
     }
 }
