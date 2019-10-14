@@ -45,6 +45,7 @@ public class App
             }
 
         }
+        System.out.println("You lose! You went over 21.");
 
     }
 }
