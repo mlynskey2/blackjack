@@ -13,6 +13,8 @@ public class App
     public static void main( String[] args ) {
 
         Scanner scanner = new Scanner(System.in);
+        Game game = new Game();
+        Dice dice = new Dice();
 
         System.out.println("-------------------------------------------------------------------------------------------------------------");
         System.out.println("Welcome to Blackjack!");
@@ -23,7 +25,10 @@ public class App
         System.out.print("Press ENTER to play!");
 
         scanner.nextLine();
-        System.out.println("woo!");
+        dice.roll();
+        game.userTotal += dice.die1 + dice.die2;
+        System.out.println("Roll: " + dice.die1 + ", " + dice.die2);
+        System.out.println("Total: " + game.userTotal);
 
     }
 }
