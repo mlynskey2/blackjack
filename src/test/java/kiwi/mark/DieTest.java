@@ -10,7 +10,7 @@ public class DieTest {
     Die die;
 
     @Before
-    public void beforeEachTest() {
+    public void setUp() {
         die = new Die();
     }
 
