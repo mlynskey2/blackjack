@@ -23,6 +23,7 @@ public class App
         Scanner scanner = new Scanner(System.in);
         String command = "";
         Game game = new Game();
+        Player player = new Player("Player");
         Die die1 = new Die();
         Die die2 = new Die();
 
@@ -39,12 +40,12 @@ public class App
         // Initial roll
         die1.roll();
         die2.roll();
-        game.addToUserTotal(die1.getNumber(), die2.getNumber());
+        player.add(die1.getNumber(), die2.getNumber());
         System.out.println("Roll: " + die1.getNumber() + ", " + die2.getNumber());
-        System.out.println("Current total: " + game.getUserTotal());
+        System.out.println("Current total: " + player.getTotal());
 
         // Game continues until total is 20 or more, or user holds
-        while (game.getUserTotal() < 20 && !command.equals("hold")) {
+        while (player.getTotal() < 20 && !command.equals("hold")) {
 
             System.out.println("Would you like to hold or roll? [Type 'hold' or 'roll']");
             command = scanner.nextLine();
@@ -52,18 +53,38 @@ public class App
             if (command.equals("roll")) {
                 die1.roll();
                 die2.roll();
-                game.addToUserTotal(die1.getNumber(), die2.getNumber());
+                player.add(die1.getNumber(), die2.getNumber());
                 System.out.println("Roll: " + die1.getNumber() + ", " + die2.getNumber());
-                System.out.println("Current total: " + game.getUserTotal());
+                System.out.println("Current total: " + player.getTotal());
             } else if (command.equals("hold")) {
                 break;
             }
 
         }
 
-        // Assess the game and show the result
-        game.assess();
-        System.out.println(game.getResult());
+        // Assess the game and show the result TODO
+
+        Player computer = new Player("Computer");
+
+        // If simulation is required, compute total for computer. Otherwise its total will stay 0
+        if (game.simulationRequired(player.getTotal())) {
+            game.simulate(computer);
+        }
+
+        Player winner = game.assess(player, computer);
+        if (winner.getName().equals("Player")) {
+            System.out.println("You won!");
+        } else if (winner.getName().equals("Draw")) {
+            System.out.println("It's a draw!");
+        } else {
+            System.out.println("You lost!");
+        }
+
+        System.out.println("Your total: " + player.getTotal());
+        if (computer.getTotal() > 0) {
+            System.out.println("Computer total: " + computer.getTotal());
+        }
+
 
     }
 }

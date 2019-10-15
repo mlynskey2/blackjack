@@ -8,7 +8,6 @@ import java.util.Random;
 public class Game {
 
     // Initialise variables
-    private int userTotal;
     public int computerTotal;
     private Die die1;
     private Die die2;
@@ -20,7 +19,6 @@ public class Game {
      * Game constructor initialises variables to default values
      */
     public Game() {
-        userTotal = 0;
         computerTotal = 0;
         die1 = new Die();
         die2 = new Die();
@@ -32,12 +30,12 @@ public class Game {
     /**
      * Simulates a game of blackjack as the dealer/computer. This is the opponent's game
      */
-    public void simulate() {
+    public void simulate(Player computer) {
 
-        while (computerTotal < 20 && roll == true) {
+        while (computer.getTotal() < 20 && roll == true) {
             die1.roll();
             die2.roll();
-            computerTotal += die1.getNumber() + die2.getNumber();
+            computer.add(die1.getNumber(), die2.getNumber());
 
             // Randomly choose if computer will roll or hold
             roll = rand.nextBoolean();
@@ -48,9 +46,45 @@ public class Game {
     /**
      * Assesses who won based on the results of the player, and if required, the dealer/computer
      */
-    public void assess() {
+    public Player assess(Player player, Player computer) {
 
-        if (userTotal > 21) {
+        // If no simulation was necessary
+        if (computer.getTotal() == 0) {
+            if (player.getTotal() > 21) {
+                // User loses, score over 21
+                return computer;
+            } else if (player.getTotal() == 21) {
+                // User wins, score is 21
+                return player;
+            } else {
+                // Error: Player score 20 or less but computer didn't play
+                return new Player("Error");
+            }
+
+        } else {
+            // Otherwise compare with computer total
+            if (computer.getTotal() > 21) {
+                // Computer went over 21
+                return player;
+            } else {
+                if (player.getTotal() > computer.getTotal()) {
+                    // Player closer to 21 than computer
+                    return player;
+                } else {
+                    if (player.getTotal() < computer.getTotal()) {
+                        // Computer closer to 21 than player
+                        return computer;
+                    } else {
+                        // Draw
+                        return new Player("Draw");
+                    }
+                }
+            }
+        }
+
+
+
+        /*if (userTotal > 21) {
             // User loses, no need to simulate dealar/computer's game
             outputString = "You lose! You went over 21.";
         } else {
@@ -72,25 +106,24 @@ public class Game {
                     }
                 }
             }
+        }*/
+
+    }
+
+    /**
+     * Checks to see if the computer needs to play
+     * @param total
+     * @return
+     */
+    public boolean simulationRequired(int total) {
+        // If the player's score is 21 or over, computer does not need to play
+        // E.g. If total is 21, user wins instantly. If total is 22 or over, user loses instantly.
+        if (total > 20) {
+            return false;
+        } else {
+            // Total is 20 or under, computer needs to play
+            return true;
         }
-
-    }
-
-    /**
-     * Adds two numbers to the userTotal. Used to add dice rolls
-     * @param a
-     * @param b
-     */
-    public void addToUserTotal(int a, int b) {
-        userTotal += a + b;
-    }
-
-    /**
-     * Returns the current userTotal
-     * @return userTotal
-     */
-    public int getUserTotal() {
-        return userTotal;
     }
 
     /**
