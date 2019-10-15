@@ -7,7 +7,7 @@ import java.util.Random;
  */
 public class Game {
 
-    // Initialise varibles
+    // Initialise variables
     private int userTotal;
     public int computerTotal;
     private Die die1;
@@ -24,7 +24,7 @@ public class Game {
         computerTotal = 0;
         die1 = new Die();
         die2 = new Die();
-        roll = true;
+        roll = true; // Computer must roll on the first turn
         rand = new Random();
         outputString = "";
     }
@@ -38,6 +38,8 @@ public class Game {
             die1.roll();
             die2.roll();
             computerTotal += die1.getNumber() + die2.getNumber();
+
+            // Randomly choose if computer will roll or hold
             roll = rand.nextBoolean();
         }
 
