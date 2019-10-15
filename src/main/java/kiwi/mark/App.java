@@ -3,15 +3,23 @@ package kiwi.mark;
 import java.util.Scanner;
 
 /**
- * Hello world!
+ * Blackjack
  *
  */
 public class App 
 {
+    /**
+     * Version variable
+     */
     private static final String version = "0.0.1";
 
+    /**
+     * Main method
+     * @param args
+     */
     public static void main( String[] args ) {
 
+        // Initialise variables
         Scanner scanner = new Scanner(System.in);
         String command = "";
         Game game = new Game();
@@ -27,13 +35,16 @@ public class App
         System.out.print("Press ENTER to play!");
 
         scanner.nextLine();
+
+        // Initial roll
         die1.roll();
         die2.roll();
-        game.userTotal += die1.getNumber() + die2.getNumber();
+        game.addToUserTotal(die1.getNumber(), die2.getNumber());
         System.out.println("Roll: " + die1.getNumber() + ", " + die2.getNumber());
-        System.out.println("Current total: " + game.userTotal);
+        System.out.println("Current total: " + game.getUserTotal());
 
-        while (game.userTotal < 20 && !command.equals("hold")) {
+        // Game continues until total is 20 or more, or user holds
+        while (game.getUserTotal() < 20 && !command.equals("hold")) {
 
             System.out.println("Would you like to hold or roll? [Type 'hold' or 'roll']");
             command = scanner.nextLine();
@@ -41,15 +52,16 @@ public class App
             if (command.equals("roll")) {
                 die1.roll();
                 die2.roll();
-                game.userTotal += die1.getNumber() + die2.getNumber();
+                game.addToUserTotal(die1.getNumber(), die2.getNumber());
                 System.out.println("Roll: " + die1.getNumber() + ", " + die2.getNumber());
-                System.out.println("Current total: " + game.userTotal);
+                System.out.println("Current total: " + game.getUserTotal());
             } else if (command.equals("hold")) {
                 break;
             }
 
         }
 
+        // Assess the game and show the result
         game.assess();
         System.out.println(game.getResult());
 
