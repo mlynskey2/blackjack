@@ -11,7 +11,7 @@ public class Game {
     public int computerTotal;
     private Die die1;
     private Die die2;
-    private boolean roll;
+    private boolean wantsToRoll;
     private Random rand;
     private String outputString;
 
@@ -22,7 +22,7 @@ public class Game {
         computerTotal = 0;
         die1 = new Die();
         die2 = new Die();
-        roll = true; // Computer must roll on the first turn
+        wantsToRoll = true; // Computer must roll on the first turn
         rand = new Random();
         outputString = "";
     }
@@ -30,15 +30,15 @@ public class Game {
     /**
      * Simulates a game of blackjack as the dealer/computer. This is the opponent's game
      */
-    public void simulate(Player computer) {
+    public void simulate(Player computer, int playerTotal) {
 
-        while (computer.getTotal() < 20 && roll == true) {
+        while (computer.getTotal() < 20 && computer.getTotal() < playerTotal) {
             die1.roll();
             die2.roll();
             computer.add(die1.getNumber(), die2.getNumber());
 
             // Randomly choose if computer will roll or hold
-            roll = rand.nextBoolean();
+            //wantsToRoll = rand.nextBoolean();
         }
 
     }

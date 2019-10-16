@@ -62,16 +62,19 @@ public class App
 
         }
 
-        // Assess the game and show the result TODO
+        // Assess the game and show the result
 
         Player computer = new Player("Computer");
 
         // If simulation is required, compute total for computer. Otherwise its total will stay 0
         if (game.simulationRequired(player.getTotal())) {
-            game.simulate(computer);
+            game.simulate(computer, player.getTotal());
         }
 
+
         Player winner = game.assess(player, computer);
+
+        // TODO create method for this so can test it
         if (winner.getName().equals("Player")) {
             System.out.println("You won!");
         } else if (winner.getName().equals("Draw")) {
