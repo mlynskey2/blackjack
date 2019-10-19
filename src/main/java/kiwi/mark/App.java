@@ -1,6 +1,7 @@
 package kiwi.mark;
 
 import java.util.Scanner;
+import javax.management.BadStringOperationException;
 
 /**
  * Blackjack
@@ -22,6 +23,7 @@ public class App
         // Initialise variables
         Scanner scanner = new Scanner(System.in);
         String command = "";
+        InputChecker checker = new InputChecker();
         Game game = new Game();
         Player player = new Player("Player");
         Die die1 = new Die();
@@ -48,7 +50,15 @@ public class App
         while (player.getTotal() < 20 && !command.equals("hold")) {
 
             System.out.println("Would you like to hold or roll? [Type 'hold' or 'roll']");
-            command = scanner.nextLine();
+            boolean validInput = false;
+            while (!validInput) {
+                try {
+                    command = checker.verifyInput(scanner.nextLine());
+                    validInput = true;
+                } catch (BadStringOperationException e){
+                    System.out.println("Invalid input. Type 'roll' or 'hold'.");
+                }
+            }
 
             if (command.equals("roll")) {
                 die1.roll();

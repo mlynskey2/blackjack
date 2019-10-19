@@ -15,7 +15,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void testAddMethodWorks() {
+    public void testAddMethod() {
         player.add(4, 5);
         assertEquals("Total not correct", player.getTotal(), 9);
     }

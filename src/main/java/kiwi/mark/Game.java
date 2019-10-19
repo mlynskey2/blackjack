@@ -36,9 +36,6 @@ public class Game {
             die1.roll();
             die2.roll();
             computer.add(die1.getNumber(), die2.getNumber());
-
-            // Randomly choose if computer will roll or hold
-            //wantsToRoll = rand.nextBoolean();
         }
 
     }
@@ -81,32 +78,6 @@ public class Game {
                 }
             }
         }
-
-
-
-        /*if (userTotal > 21) {
-            // User loses, no need to simulate dealar/computer's game
-            outputString = "You lose! You went over 21.";
-        } else {
-
-            // Simulate the dealer/computer's game
-            simulate();
-
-            // Determine if win/lose/draw
-            if (computerTotal > 21) {
-                outputString =  "Computer total: " + computerTotal + "\nYou win! The computer went over 21.";
-            } else {
-                if (userTotal > computerTotal) {
-                    outputString = "Computer total: " + computerTotal + "\nYou win! You were closer to 21 than the computer.";
-                } else {
-                    if (userTotal < computerTotal) {
-                        outputString = "Computer total: " + computerTotal + "\nYou lose! The computer was closer to 21 than you.";
-                    } else {
-                        outputString = "Computer total: " + computerTotal + "\nIt's a draw!";
-                    }
-                }
-            }
-        }*/
 
     }
 
