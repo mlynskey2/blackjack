@@ -34,6 +34,7 @@ public class App
         System.out.println("v" + version);
         System.out.println("This is a simple game of Blackjack using two dice. After your first roll, choose to roll again or hold.");
         System.out.println("The goal is to get as close to 21 as you can without going over!");
+        System.out.println("Type 'exit' to quit the program.");
         System.out.println("-------------------------------------------------------------------------------------------------------------");
         System.out.print("Press ENTER to play!");
 
@@ -56,7 +57,7 @@ public class App
                     command = checker.verifyInput(scanner.nextLine());
                     validInput = true;
                 } catch (BadStringOperationException e){
-                    System.out.println("Invalid input. Type 'roll' or 'hold'.");
+                    System.out.println("Invalid input. Type 'roll' or 'hold':");
                 }
             }
 
@@ -68,6 +69,11 @@ public class App
                 System.out.println("Current total: " + player.getTotal());
             } else if (command.equals("hold")) {
                 break;
+            } else if (command.equals("exit")) {
+                System.exit(0);
+            } else {
+                System.out.println("Oops! Something has gone wrong. The program will now close.");
+                System.exit(1);
             }
 
         }

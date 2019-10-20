@@ -20,6 +20,10 @@ public class InputChecker {
             case "h":
                 command = "hold";
                 break;
+            case "exit":
+            case "quit":
+                command = "exit";
+                break;
             default:
                 throw new BadStringOperationException(input);
         }
