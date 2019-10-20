@@ -10,6 +10,12 @@ public class Player {
         this.name = name;
     }
 
+    // Constructor which only lets you set the total, for testing only
+    public Player(String name, int total) {
+        this.name = name;
+        this.total = total;
+    }
+
     public int getTotal() {
         return total;
     }
