@@ -8,31 +8,25 @@ import java.util.Random;
 public class Game {
 
     // Initialise variables
-    public int computerTotal;
     private Die die1;
     private Die die2;
-    private boolean wantsToRoll;
-    private Random rand;
-    private String outputString;
 
     /**
      * Game constructor initialises variables to default values
      */
     public Game() {
-        computerTotal = 0;
         die1 = new Die();
         die2 = new Die();
-        wantsToRoll = true; // Computer must roll on the first turn
-        rand = new Random();
-        outputString = "";
     }
 
     /**
      * Simulates a game of blackjack as the dealer/computer. This is the opponent's game
+     * @param computer - the player to simulate
+     * @param target - the score to beat
      */
-    public void simulate(Player computer, int playerTotal) {
+    public void simulate(Player computer, int target) {
 
-        while (computer.getTotal() < 20 && computer.getTotal() < playerTotal) {
+        while (computer.getTotal() < 20 && computer.getTotal() < target) {
             die1.roll();
             die2.roll();
             computer.add(die1.getNumber(), die2.getNumber());
@@ -43,7 +37,7 @@ public class Game {
     /**
      * Assesses who won based on the results of the player, and if required, the dealer/computer
      */
-    public Player assess(Player player, Player computer) {
+    public Player getWinner(Player player, Player computer) {
 
         // If no simulation was necessary
         if (computer.getTotal() == 0) {
@@ -95,14 +89,6 @@ public class Game {
             // Total is 20 or under, computer needs to play
             return true;
         }
-    }
-
-    /**
-     * Gets the string holding the results of the game
-     * @return outputString
-     */
-    public String getResult() {
-        return outputString;
     }
 
 }

@@ -87,8 +87,7 @@ public class App
             game.simulate(computer, player.getTotal());
         }
 
-
-        Player winner = game.assess(player, computer);
+        Player winner = game.getWinner(player, computer);
 
         // TODO create method for this so can test it
         if (winner.getName().equals("Player")) {
@@ -103,7 +102,6 @@ public class App
         if (computer.getTotal() > 0) {
             System.out.println("Computer total: " + computer.getTotal());
         }
-
 
     }
 }

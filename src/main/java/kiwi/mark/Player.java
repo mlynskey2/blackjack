@@ -14,6 +14,11 @@ public class Player {
         return total;
     }
 
+    // Set total for testing purposes only
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
     public void add(int a, int b) {
         total += a + b;
     }
