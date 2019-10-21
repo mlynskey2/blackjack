@@ -42,39 +42,49 @@ public class Game {
      */
     public Player getWinner(Player player, Player computer) {
 
-        // If no simulation was necessary
-        if (computer.getTotal() == 0) {
-            if (player.getTotal() > 21) {
-                // User loses, score over 21
-                return computer;
-            } else if (player.getTotal() == 21) {
-                // User wins, score is 21
-                return player;
-            } else {
-                // Error: Player score 20 or less but computer didn't play
-                return new Player("Error");
-            }
+        if (player.getTotal() >= 2 && player.getTotal() <= 31 && computer.getTotal() >= 2 && computer.getTotal() <= 31) {
 
-        } else {
-            // Otherwise compare with computer total
-            if (computer.getTotal() > 21) {
-                // Computer went over 21
-                return player;
-            } else {
-                if (player.getTotal() > computer.getTotal()) {
-                    // Player closer to 21 than computer
+            // If no simulation was necessary
+            if (computer.getTotal() == 0) {
+                if (player.getTotal() > 21) {
+                    // User loses, score over 21
+                    return computer;
+                } else if (player.getTotal() == 21) {
+                    // User wins, score is 21
                     return player;
                 } else {
-                    if (player.getTotal() < computer.getTotal()) {
-                        // Computer closer to 21 than player
-                        return computer;
+                    // Error: Player score 20 or less but computer didn't play
+                    return new Player("Error");
+                }
+            } else {
+                // Otherwise compare with computer total
+                if (computer.getTotal() > 21) {
+                    // Computer went over 21
+                    return player;
+                } else {
+                    if (player.getTotal() > computer.getTotal()) {
+                        // Player closer to 21 than computer
+                        return player;
                     } else {
-                        // Draw
-                        return new Player("Draw");
+                        if (player.getTotal() < computer.getTotal()) {
+                            // Computer closer to 21 than player
+                            return computer;
+                        } else {
+                            // Draw
+                            return new Player("Draw");
+                        }
                     }
                 }
             }
+
+        } else {
+
+            // If player totals are out of range, throw exception
+            throw new IllegalArgumentException("Invalid player total");
+
         }
+
+
 
     }
 
