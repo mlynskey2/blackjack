@@ -84,7 +84,13 @@ public class App
 
         // If simulation is required, compute total for computer. Otherwise its total will stay 0
         if (game.simulationRequired(player.getTotal())) {
-            game.simulate(computer, player.getTotal());
+            try {
+                game.simulate(computer, player.getTotal());
+            } catch (IllegalArgumentException e) {
+                // An invalid player score has been passed to simulate()
+                System.out.println("Oops! Something has gone wrong. The program will now close.");
+                System.exit(1);
+            }
         }
 
         Player winner = game.getWinner(player, computer);

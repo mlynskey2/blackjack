@@ -1,6 +1,6 @@
 package kiwi.mark;
 
-import java.util.Random;
+import java.lang.IllegalArgumentException;
 
 /**
  * Game class to provide general game functionality
@@ -24,14 +24,17 @@ public class Game {
      * @param computer - the player to simulate
      * @param target - the score to beat
      */
-    public void simulate(Player computer, int target) {
+    public void simulate(Player computer, int target) throws IllegalArgumentException {
 
-        while (computer.getTotal() < 20 && computer.getTotal() < target) {
-            die1.roll();
-            die2.roll();
-            computer.add(die1.getNumber(), die2.getNumber());
+        if (target >= 2 && target <= 20) {
+            while (computer.getTotal() < 20 && computer.getTotal() < target) {
+                die1.roll();
+                die2.roll();
+                computer.add(die1.getNumber(), die2.getNumber());
+            }
+        } else {
+            throw new IllegalArgumentException("Invalid target");
         }
-
     }
 
     /**

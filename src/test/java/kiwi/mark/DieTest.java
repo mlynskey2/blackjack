@@ -14,6 +14,9 @@ public class DieTest {
         die = new Die();
     }
 
+    /**
+     * Test that a die roll results in a number between 1 and 6 inclusive.
+     */
     @Test
     public void testRollWithinBounds() {
         die.roll();
