@@ -67,7 +67,7 @@ public class GetWinnerTest {
     }
 
     /*---------------------------------------------------------------------------*/
-    // getWinner(Player player, Player computer tests where
+    // getWinner(Player player, Player computer) tests where
     // computer score is 22 or over
     /*---------------------------------------------------------------------------*/
 
@@ -105,7 +105,7 @@ public class GetWinnerTest {
     }
 
     /**
-     * Edge case test - these values should never make it to this method
+     * Corner case test - these values should never make it to this method
      * Test with Player P1 of score 0 and Player P2 of score 999
      * Should throw IllegalArgumentException
      */
