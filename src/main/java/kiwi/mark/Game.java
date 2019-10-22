@@ -42,7 +42,8 @@ public class Game {
      */
     public Player getWinner(Player player, Player computer) {
 
-        if (player.getTotal() >= 2 && player.getTotal() <= 31 && computer.getTotal() >= 2 && computer.getTotal() <= 31) {
+        // Player total must be between 2 and 31 inclusive, computer total must be between 0 and 31 inclusive, but can't be 1.
+        if (player.getTotal() >= 2 && player.getTotal() <= 31 && computer.getTotal() >= 0 && computer.getTotal() <= 31 && computer.getTotal() != 1) {
 
             // If no simulation was necessary
             if (computer.getTotal() == 0) {
