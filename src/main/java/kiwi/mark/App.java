@@ -12,7 +12,7 @@ public class App
     /**
      * Version variable
      */
-    private static final String version = "0.0.1";
+    private static final String version = "0.1.0";
 
     /**
      * Main method
