@@ -17,17 +17,19 @@
 - REQ-9: If the user types `exit`, the program should terminate cleanly.
 - REQ-10: If the user enters invalid input, such as an unexpected string, empty string, or a number, the program must say that the command was invalid, and ask them to re-enter their command.
 
-##Traceability Matrix
+## Traceability Matrix
 
 The following traceability matrix maps the above requirements to the UAT test case IDs:
 
-- REQ-1: 1
-- REQ-2: 2
-- REQ-3: 9
-- REQ-4: 5, 6, 8
-- REQ-5: 6
-- REQ-6: 4, 7, 8
-- REQ-7: 8
-- REQ-8: 7
-- REQ-9: 3
-- REQ-10: 9, 10, 11, 12
+| Requirement | UAT Test Case |
+| ----------- | ------------- |
+| REQ-1       | 1             |
+| REQ-2       | 2             |
+| REQ-3       | 9             |
+| REQ-4       | 5, 6, 8       |
+| REQ-5       | 6             |
+| REQ-6       | 4, 7, 8       |
+| REQ-7       | 8             |
+| REQ-8       | 7             |
+| REQ-9       | 3             |
+| REQ-10      | 9, 10, 11, 12 |
