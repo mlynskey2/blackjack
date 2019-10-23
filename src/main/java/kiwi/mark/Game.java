@@ -27,7 +27,7 @@ public class Game {
     public void simulate(Player computer, int target) throws IllegalArgumentException {
 
         if (target >= 2 && target <= 20) {
-            while (computer.getTotal() < 20 && computer.getTotal() < target) {
+            while (computer.getTotal() < 20 && computer.getTotal() <= target) {
                 die1.roll();
                 die2.roll();
                 computer.add(die1.getNumber(), die2.getNumber());
